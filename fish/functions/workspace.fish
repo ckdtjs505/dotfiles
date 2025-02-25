@@ -14,7 +14,7 @@ function workspace
             tmux new-session -d -s live
 
             # 위쪽 창에 liveview 생성 및 Neovim 실행
-            tmux rename-window -t live liveview
+            tmux rename-window -t live:0 liveview
             tmux send-keys -t live:liveview tliveview C-m
             tmux send-keys -t live:liveview nvim C-m
 
@@ -27,7 +27,7 @@ function workspace
             tmux resize-pane -D 6
 
             # 두번째 윈도우 추가
-            tmux new-window -t live -n livecore
+            tmux new-window -t live:1 -n livecore
             tmux send-keys -t live:livecore tlivecore C-m
             tmux send-keys -t live:livecore nvim C-m
 
@@ -53,6 +53,6 @@ function workspace
 
             tmux attach -t tv
         case "*"
-            echo "Unknown SESSION_ARG"
+            echo "사용할수 있는명령어 : tv, live"
     end
 end
